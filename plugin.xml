@@ -14,7 +14,6 @@
 
   <!-- android -->
   <platform name="android">
-    <dependency id="cordova-plugin-googleplayservices@19.0.0" />
     <config-file target="res/xml/config.xml" parent="/*">
       <feature name="BrightcovePlayerPlugin">
         <param name="android-package" value="net.nopattern.cordova.brightcoveplayer.BrightcovePlayerPlugin" />
@@ -68,6 +67,9 @@
     <source-file src="src/ios/BrightcovePluginViewController.m" />
 
     <resource-file src="src/ios/BrightcovePlugin.storyboard" />
+    <resource-file src="src/icons/cross-icon.png" />
+    <resource-file src="src/icons/cross-icon@2x.png" />
+    <resource-file src="src/icons/cross-icon@3x.png" />
 
     <!-- libs -->
     <header-file src="src/ios/libs/BrightcoveSDK/Headers/BCOVAdvertising.h" />
