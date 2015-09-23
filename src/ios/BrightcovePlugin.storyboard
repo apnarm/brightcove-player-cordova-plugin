@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="13F1077" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--videoContainer-->
@@ -18,24 +18,42 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U45-8H-pUj" userLabel="videoContainer">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="44" width="600" height="556"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PRZ-Ds-BvB" userLabel="closeButton">
-                                <rect key="frame" x="0.0" y="0.0" width="60" height="27"/>
-                                <state key="normal" title="Zamknij">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="dismissVideoView:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vwv-Ld-tBm"/>
-                                </connections>
-                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YWz-ul-WP4">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PRZ-Ds-BvB" userLabel="closeButton">
+                                        <rect key="frame" x="8" y="8" width="28" height="28"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="PRZ-Ds-BvB" secondAttribute="height" multiplier="1:1" id="e8M-9E-ktL"/>
+                                        </constraints>
+                                        <state key="normal" image="cross-icon.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="dismissVideoView:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vwv-Ld-tBm"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="PRZ-Ds-BvB" firstAttribute="top" secondItem="YWz-ul-WP4" secondAttribute="top" constant="8" id="0gr-8g-bHg"/>
+                                    <constraint firstAttribute="bottom" secondItem="PRZ-Ds-BvB" secondAttribute="bottom" constant="8" id="IHr-As-dBr"/>
+                                    <constraint firstItem="PRZ-Ds-BvB" firstAttribute="leading" secondItem="YWz-ul-WP4" secondAttribute="leading" constant="8" id="Yf2-Q8-dx0"/>
+                                    <constraint firstAttribute="height" constant="44" id="b5Q-fP-88e"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="U45-8H-pUj" secondAttribute="bottom" id="GUc-HD-3LB"/>
-                            <constraint firstItem="U45-8H-pUj" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="GlN-xV-Ddg"/>
-                            <constraint firstItem="U45-8H-pUj" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="HHm-0s-Zjg"/>
-                            <constraint firstAttribute="trailing" secondItem="U45-8H-pUj" secondAttribute="trailing" id="Jd7-T9-Yfs"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="U45-8H-pUj" secondAttribute="bottom" id="3cu-Cc-BNO"/>
+                            <constraint firstAttribute="trailing" secondItem="U45-8H-pUj" secondAttribute="trailing" id="BHa-hs-mvd"/>
+                            <constraint firstItem="YWz-ul-WP4" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="Ex9-1l-WGe"/>
+                            <constraint firstAttribute="trailing" secondItem="YWz-ul-WP4" secondAttribute="trailing" id="ZYs-fv-c8f"/>
+                            <constraint firstItem="U45-8H-pUj" firstAttribute="top" secondItem="YWz-ul-WP4" secondAttribute="bottom" id="bvh-bd-zqA"/>
+                            <constraint firstItem="U45-8H-pUj" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="glw-QU-S49"/>
+                            <constraint firstItem="YWz-ul-WP4" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="xzT-SN-QGE"/>
                         </constraints>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
@@ -52,5 +70,8 @@
             <point key="canvasLocation" x="332" y="238"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="cross-icon.png" width="28" height="28"/>
+    </resources>
     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
 </document>

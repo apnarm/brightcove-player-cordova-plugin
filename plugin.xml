@@ -67,6 +67,9 @@
     <source-file src="src/ios/BrightcovePluginViewController.m" />
 
     <resource-file src="src/ios/BrightcovePlugin.storyboard" />
+    <resource-file src="src/icons/cross-icon.png" />
+    <resource-file src="src/icons/cross-icon@2x.png" />
+    <resource-file src="src/icons/cross-icon@3x.png" />
 
     <!-- libs -->
     <header-file src="src/ios/libs/BrightcoveSDK/Headers/BCOVAdvertising.h" />
