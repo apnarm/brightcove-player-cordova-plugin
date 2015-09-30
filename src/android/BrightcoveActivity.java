@@ -94,7 +94,7 @@ public class BrightcoveActivity extends BrightcovePlayer {
     options.put("video_fields", StringUtil.join(values, ","));
 
     if (referenceId != null){
-      playById(token, referenceId);
+      playByReferenceId(token, referenceId);
     } else if (videoUrl != null){
       playByUrl(videoUrl);
     }
@@ -124,7 +124,7 @@ public class BrightcoveActivity extends BrightcovePlayer {
     return resources.getIdentifier(what, where, package_name);
   }
 
-  private void playById(String token, String referenceId){
+  private void playByReferenceId(String token, String referenceId){
     Log.d(TAG, "Playing video from brightcove reference ID: " + referenceId);
 
     this.fullScreen();

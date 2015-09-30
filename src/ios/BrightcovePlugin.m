@@ -145,7 +145,7 @@ UIStoryboard *storyboard = nil;
   [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
 
-- (void)playById:(CDVInvokedUrlCommand*)command
+- (void)playByReferenceId:(CDVInvokedUrlCommand*)command
 {
     CDVPluginResult* pluginResult = nil;
     

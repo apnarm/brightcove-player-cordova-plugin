@@ -16,12 +16,12 @@ BrightcovePlayerPlugin.playByUrl = function(url, vastLink) {
   );
 };
 
-BrightcovePlayerPlugin.playById = function(id, vastLink) {
+BrightcovePlayerPlugin.playByReferenceId = function(id, vastLink) {
   exec(
     successHandler, 
     errorHandler, 
     "BrightcovePlayerPlugin", 
-    "playById", 
+    "playByReferenceId", 
     [id ? id.toString() : null, vastLink || null]
   );
 };
