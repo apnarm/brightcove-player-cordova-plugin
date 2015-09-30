@@ -57,7 +57,7 @@ public class BrightcoveActivity extends BrightcovePlayer {
   static final String PLAYER_EVENT = "PLAYER_EVENT";
 
   private String token = null;
-  private String videoId = null;
+  private String referenceId = null;
   private String videoUrl = null;
   private String vast = null;
   private String imaLang = null;
@@ -79,7 +79,7 @@ public class BrightcoveActivity extends BrightcovePlayer {
     Intent intent = getIntent();
 
     token = intent.getStringExtra("brightcove-token");
-    videoId = intent.getStringExtra("video-id");
+    referenceId = intent.getStringExtra("reference-id");
     videoUrl = intent.getStringExtra("video-url");
     vast = intent.getStringExtra("vast-link");
     imaLang = intent.getStringExtra("ima-language");
@@ -93,8 +93,8 @@ public class BrightcoveActivity extends BrightcovePlayer {
     values.remove(VideoFields.HLS_URL);
     options.put("video_fields", StringUtil.join(values, ","));
 
-    if (videoId != null){
-      playById(token, videoId);
+    if (referenceId != null){
+      playById(token, referenceId);
     } else if (videoUrl != null){
       playByUrl(videoUrl);
     }
@@ -124,12 +124,12 @@ public class BrightcoveActivity extends BrightcovePlayer {
     return resources.getIdentifier(what, where, package_name);
   }
 
-  private void playById(String token, String id){
-    Log.d(TAG, "Playing video from brightcove ID: " + id);
+  private void playById(String token, String referenceId){
+    Log.d(TAG, "Playing video from brightcove reference ID: " + referenceId);
 
     this.fullScreen();
     Catalog catalog = new Catalog(token);
-    catalog.findVideoByReferenceID(videoId, new VideoListener() {
+    catalog.findVideoByReferenceID(referenceId, new VideoListener() {
       public void onVideo(Video video) {
         brightcoveVideoView.add(video);
         brightcoveVideoView.start();
@@ -140,7 +140,7 @@ public class BrightcoveActivity extends BrightcovePlayer {
     });
 
     token = null;
-    videoId = null;
+    referenceId = null;
     vast = null;
 
     return;

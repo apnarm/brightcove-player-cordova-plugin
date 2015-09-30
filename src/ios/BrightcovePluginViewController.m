@@ -94,7 +94,7 @@ NSString * progressString = nil;
     
     [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
     
-    if (self.kViewControllerCatalogToken != nil && [self.kViewControllerCatalogToken length] && self.kViewControllerPlaylistID != nil && [self.kViewControllerPlaylistID length])
+    if (self.kViewControllerCatalogToken != nil && [self.kViewControllerCatalogToken length] && self.kViewControllerReferenceID != nil && [self.kViewControllerReferenceID length])
     {
       self.catalogService = [[BCOVCatalogService alloc] initWithToken:self.kViewControllerCatalogToken];
       [self requestContentFromCatalog];
@@ -155,7 +155,7 @@ NSString * progressString = nil;
 {
     [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
     
-    [self.catalogService findVideoWithReferenceID:self.kViewControllerPlaylistID parameters:nil completion:^(BCOVVideo *video, NSDictionary *jsonResponse, NSError *error) {
+    [self.catalogService findVideoWithReferenceID:self.kViewControllerReferenceID parameters:nil completion:^(BCOVVideo *video, NSDictionary *jsonResponse, NSError *error) {
         
         if (video)
         {
@@ -273,7 +273,7 @@ NSString * progressString = nil;
     self.notificationReceipt = nil;
     self.catalogService = nil;
     self.kViewControllerIMAVMAPResponseAdTag = nil;
-    self.kViewControllerPlaylistID = nil;
+    self.kViewControllerReferenceID = nil;
     self.kViewControllerVideoURL = nil;
     self.kViewControllerCatalogToken = nil;
     self.activityView = nil;
