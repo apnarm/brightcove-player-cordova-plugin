@@ -94,7 +94,7 @@ NSString * progressString = nil;
     
     [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
     
-    if (self.kViewControllerCatalogToken != nil && [self.kViewControllerCatalogToken length] && self.kViewControllerReferenceID != nil && [self.kViewControllerReferenceID length])
+    if (self.kViewControllerCatalogToken != nil && [self.kViewControllerCatalogToken length] && (self.kViewControllerReferenceID != nil && [self.kViewControllerReferenceID length] || self.kViewControllerVideoID != nil && [self.kViewControllerVideoID length]))
     {
       self.catalogService = [[BCOVCatalogService alloc] initWithToken:self.kViewControllerCatalogToken];
       [self requestContentFromCatalog];
@@ -154,20 +154,40 @@ NSString * progressString = nil;
 - (void)requestContentFromCatalog
 {
     [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
+
+    if (self.kViewControllerVideoID)
+    {
+        [self.catalogService findVideoWithVideoID:self.kViewControllerVideoID parameters:nil completion:^(BCOVVideo *video, NSDictionary *jsonResponse, NSError *error) {
+            
+            if (video)
+            {
+                NSMutableArray *videoArray = [self retrieveVideoArray:video];
+                [self.playbackController setVideos:videoArray];
+            }
+            else
+            {
+                NSLog(@"BrightcovePluginViewController Debug - Error retrieving video: %@", error);
+            }
+            
+        }];
+    }
+    else 
+    {
     
-    [self.catalogService findVideoWithReferenceID:self.kViewControllerReferenceID parameters:nil completion:^(BCOVVideo *video, NSDictionary *jsonResponse, NSError *error) {
-        
-        if (video)
-        {
-            NSMutableArray *videoArray = [self retrieveVideoArray:video];
-            [self.playbackController setVideos:videoArray];
-        }
-        else
-        {
-            NSLog(@"BrightcovePluginViewController Debug - Error retrieving video: %@", error);
-        }
-        
-    }];
+        [self.catalogService findVideoWithReferenceID:self.kViewControllerReferenceID parameters:nil completion:^(BCOVVideo *video, NSDictionary *jsonResponse, NSError *error) {
+            
+            if (video)
+            {
+                NSMutableArray *videoArray = [self retrieveVideoArray:video];
+                [self.playbackController setVideos:videoArray];
+            }
+            else
+            {
+                NSLog(@"BrightcovePluginViewController Debug - Error retrieving video: %@", error);
+            }
+            
+        }];
+    }
 }
 
 - (NSMutableArray *)retrieveVideoArray:(BCOVVideo *)video{

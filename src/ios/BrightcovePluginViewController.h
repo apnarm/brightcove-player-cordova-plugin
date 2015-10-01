@@ -24,6 +24,7 @@
 - (void)setup;
 @property (nonatomic, strong) id delegate;
 @property NSString * kViewControllerCatalogToken;
+@property NSString * kViewControllerVideoID;
 @property NSString * kViewControllerReferenceID;
 @property NSString * kViewControllerIMALanguage;
 @property NSString * kViewControllerIMAVMAPResponseAdTag;
