@@ -58,6 +58,7 @@ public class BrightcoveActivity extends BrightcovePlayer {
 
   private String token = null;
   private String referenceId = null;
+  private String videoId = null;
   private String videoUrl = null;
   private String vast = null;
   private String imaLang = null;
@@ -80,6 +81,7 @@ public class BrightcoveActivity extends BrightcovePlayer {
 
     token = intent.getStringExtra("brightcove-token");
     referenceId = intent.getStringExtra("reference-id");
+    videoId = intent.getStringExtra("video-id");
     videoUrl = intent.getStringExtra("video-url");
     vast = intent.getStringExtra("vast-link");
     imaLang = intent.getStringExtra("ima-language");
@@ -93,7 +95,9 @@ public class BrightcoveActivity extends BrightcovePlayer {
     values.remove(VideoFields.HLS_URL);
     options.put("video_fields", StringUtil.join(values, ","));
 
-    if (referenceId != null){
+    if (videoId != null) {
+      playById(token, videoId);
+    } else if (referenceId != null){
       playByReferenceId(token, referenceId);
     } else if (videoUrl != null){
       playByUrl(videoUrl);
@@ -122,6 +126,28 @@ public class BrightcoveActivity extends BrightcovePlayer {
     String package_name = getApplication().getPackageName();
     Resources resources = getApplication().getResources();
     return resources.getIdentifier(what, where, package_name);
+  }
+
+  private void playById(String token, String videoId){
+    Log.d(TAG, "Playing video from brightcove video ID: " + videoId);
+
+    this.fullScreen();
+    Catalog catalog = new Catalog(token);
+    catalog.findVideoByID(videoId, new VideoListener() {
+      public void onVideo(Video video) {
+        brightcoveVideoView.add(video);
+        brightcoveVideoView.start();
+      }
+      public void onError(String error) {
+        Log.e(TAG, error);
+      }
+    });
+
+    token = null;
+    videoId = null;
+    vast = null;
+
+    return;
   }
 
   private void playByReferenceId(String token, String referenceId){
