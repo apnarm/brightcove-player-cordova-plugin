@@ -94,7 +94,7 @@ NSString * progressString = nil;
     
     [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
     
-    if (self.kViewControllerCatalogToken != nil && [self.kViewControllerCatalogToken length] && (self.kViewControllerReferenceID != nil && [self.kViewControllerReferenceID length] || self.kViewControllerVideoID != nil && [self.kViewControllerVideoID length]))
+    if (self.kViewControllerCatalogToken != nil && [self.kViewControllerCatalogToken length] && ((self.kViewControllerReferenceID != nil && [self.kViewControllerReferenceID length]) || (self.kViewControllerVideoID != nil && [self.kViewControllerVideoID length])))
     {
       self.catalogService = [[BCOVCatalogService alloc] initWithToken:self.kViewControllerCatalogToken];
       [self requestContentFromCatalog];

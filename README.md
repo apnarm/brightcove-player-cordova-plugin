@@ -12,6 +12,7 @@ Methods
 - cordova.plugins.BrightcovePlayerPlugin.setLanguage
 - cordova.plugins.BrightcovePlayerPlugin.playByUrl
 - cordova.plugins.BrightcovePlayerPlugin.playById
+- cordova.plugins.BrightcovePlayerPlugin.playByReferenceId
 
 Properties
 --------
@@ -143,11 +144,11 @@ BrightcovePlayerPlugin.playById
 
 Play video by Brightcove Video ID. You must init the brightcove before using with BrightcovePlayerPlugin.init!
 
-    cordova.plugins.BrightcovePlayerPlugin.playById(brigthcoveVideoId);
+    cordova.plugins.BrightcovePlayerPlugin.playById(brightcoveVideoId);
 
 Also if you want to preroll Ad before your video just provide Vast link as the second parameter.
 
-    cordova.plugins.BrightcovePlayerPlugin.playById(brigthcoveVideoId, vastLink);
+    cordova.plugins.BrightcovePlayerPlugin.playById(brightcoveVideoId, vastLink);
 
 Supported Platforms
 -------------------
@@ -160,11 +161,11 @@ BrightcovePlayerPlugin.playByReferenceId
 
 Play video by Brightcove Video Reference ID. You must init the brightcove before using with BrightcovePlayerPlugin.init!
 
-    cordova.plugins.BrightcovePlayerPlugin.playByReferenceId(brigthcoveReferenceId);
+    cordova.plugins.BrightcovePlayerPlugin.playByReferenceId(brightcoveReferenceId);
 
 Also if you want to preroll Ad before your video just provide Vast link as the second parameter.
 
-    cordova.plugins.BrightcovePlayerPlugin.playByReferenceId(brigthcoveReferenceId, vastLink);
+    cordova.plugins.BrightcovePlayerPlugin.playByReferenceId(brightcoveReferenceId, vastLink);
 
 Supported Platforms
 -------------------
