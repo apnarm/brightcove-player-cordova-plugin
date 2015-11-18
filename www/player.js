@@ -16,6 +16,16 @@ BrightcovePlayerPlugin.playByUrl = function(url, vastLink) {
   );
 };
 
+BrightcovePlayerPlugin.playByVideoId = function(id, vastLink) {
+  exec(
+    successHandler, 
+    errorHandler, 
+    "BrightcovePlayerPlugin", 
+    "playByVideoId", 
+    [id ? id.toString() : null, vastLink || null]
+  );
+};
+
 BrightcovePlayerPlugin.playById = function(id, vastLink) {
   exec(
     successHandler, 

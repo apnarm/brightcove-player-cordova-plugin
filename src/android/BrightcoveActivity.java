@@ -57,6 +57,7 @@ public class BrightcoveActivity extends BrightcovePlayer {
   static final String PLAYER_EVENT = "PLAYER_EVENT";
 
   private String token = null;
+  private String referenceId = null;
   private String videoId = null;
   private String videoUrl = null;
   private String vast = null;
@@ -79,6 +80,7 @@ public class BrightcoveActivity extends BrightcovePlayer {
     Intent intent = getIntent();
 
     token = intent.getStringExtra("brightcove-token");
+    referenceId = intent.getStringExtra("reference-id");
     videoId = intent.getStringExtra("video-id");
     videoUrl = intent.getStringExtra("video-url");
     vast = intent.getStringExtra("vast-link");
@@ -93,8 +95,10 @@ public class BrightcoveActivity extends BrightcovePlayer {
     values.remove(VideoFields.HLS_URL);
     options.put("video_fields", StringUtil.join(values, ","));
 
-    if (videoId != null){
-      playById(token, videoId);
+    if (videoId != null) {
+      playByVideoId(token, videoId);
+    } else if (referenceId != null){
+      playById(token, referenceId);
     } else if (videoUrl != null){
       playByUrl(videoUrl);
     }
@@ -124,12 +128,12 @@ public class BrightcoveActivity extends BrightcovePlayer {
     return resources.getIdentifier(what, where, package_name);
   }
 
-  private void playById(String token, String id){
-    Log.d(TAG, "Playing video from brightcove ID: " + id);
+  private void playByVideoId(String token, String videoId){
+    Log.d(TAG, "Playing video from brightcove video ID: " + videoId);
 
     this.fullScreen();
     Catalog catalog = new Catalog(token);
-    catalog.findVideoByReferenceID(videoId, new VideoListener() {
+    catalog.findVideoByID(videoId, new VideoListener() {
       public void onVideo(Video video) {
         brightcoveVideoView.add(video);
         brightcoveVideoView.start();
@@ -141,6 +145,28 @@ public class BrightcoveActivity extends BrightcovePlayer {
 
     token = null;
     videoId = null;
+    vast = null;
+
+    return;
+  }
+
+  private void playById(String token, String referenceId){
+    Log.d(TAG, "Playing video from brightcove reference ID: " + referenceId);
+
+    this.fullScreen();
+    Catalog catalog = new Catalog(token);
+    catalog.findVideoByReferenceID(referenceId, new VideoListener() {
+      public void onVideo(Video video) {
+        brightcoveVideoView.add(video);
+        brightcoveVideoView.start();
+      }
+      public void onError(String error) {
+        Log.e(TAG, error);
+      }
+    });
+
+    token = null;
+    referenceId = null;
     vast = null;
 
     return;

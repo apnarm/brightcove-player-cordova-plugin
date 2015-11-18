@@ -145,7 +145,7 @@ UIStoryboard *storyboard = nil;
   [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
 
-- (void)playById:(CDVInvokedUrlCommand*)command
+- (void)playByVideoId:(CDVInvokedUrlCommand*)command
 {
     CDVPluginResult* pluginResult = nil;
     
@@ -161,9 +161,34 @@ UIStoryboard *storyboard = nil;
           [self setVast:vastLink];
         }
         [self.viewController showViewController:self.brightcoveView sender:self.viewController];
-        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:[NSString stringWithFormat:@"Playing now with Brightcove ID: %@", videoId]];
+        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:[NSString stringWithFormat:@"Playing now with Brightcove video ID: %@", videoId]];
       } else {
         pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"Empty video ID!"];
+      }
+    }
+    
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+}
+
+- (void)playById:(CDVInvokedUrlCommand*)command
+{
+    CDVPluginResult* pluginResult = nil;
+    
+    if (self.token == nil && ![self.token length]) {
+        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"Please init the brightcove with token!"];
+    } else {
+      NSString* referenceId = [command argumentAtIndex:0 withDefault:@"" andClass:[NSString class]];
+      NSString* vastLink = [command argumentAtIndex:1 withDefault:@"" andClass:[NSString class]];
+      if (referenceId != nil && [referenceId length]) {
+        [self initBrightcoveView];
+        [self setReferenceId:referenceId];
+        if (vastLink != nil && [vastLink length]){
+          [self setVast:vastLink];
+        }
+        [self.viewController showViewController:self.brightcoveView sender:self.viewController];
+        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:[NSString stringWithFormat:@"Playing now with Brightcove reference ID: %@", referenceId]];
+      } else {
+        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"Empty reference ID!"];
       }
     }
     
@@ -184,7 +209,12 @@ UIStoryboard *storyboard = nil;
 
 - (void)setVideoId:(NSString *)videoId
 {
-    self.brightcoveView.kViewControllerPlaylistID = videoId;
+    self.brightcoveView.kViewControllerVideoID = videoId;
+}
+
+- (void)setReferenceId:(NSString *)referenceId
+{
+    self.brightcoveView.kViewControllerReferenceID = referenceId;
 }
 
 - (void)setVideoUrl:(NSString *)videoUrl

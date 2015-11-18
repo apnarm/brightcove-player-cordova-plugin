@@ -11,6 +11,7 @@
 - (void)init:(CDVInvokedUrlCommand*)command;
 - (void)setLanguage:(CDVInvokedUrlCommand*)command;
 - (void)playByUrl:(CDVInvokedUrlCommand*)command;
+- (void)playByVideoId:(CDVInvokedUrlCommand*)command;
 - (void)playById:(CDVInvokedUrlCommand*)command;
 - (BOOL)validateUrl:(NSString *)url;
 - (void)initBrightcoveView;

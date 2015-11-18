@@ -47,6 +47,11 @@ public class BrightcovePlayerPlugin extends CordovaPlugin {
       String vast = args.getString(1);
       this.playById(id, vast, callbackContext);
       return true;
+    } else if (action.equals("playByVideoId")) {
+      String id = args.getString(0);
+      String vast = args.getString(1);
+      this.playByVideoId(id, vast, callbackContext);
+      return true;
     } else if(action.equals("init")) {
       String token = args.getString(0);
       this.initBrightcove(token, callbackContext);
@@ -77,25 +82,47 @@ public class BrightcovePlayerPlugin extends CordovaPlugin {
     }
   }
 
-  private void playById(String id, String vast, CallbackContext callbackContext) {
+  private void playByVideoId(String videoId, String vast, CallbackContext callbackContext) {
     if (this.token == null){
       callbackContext.error("Please init the brightcove with token!");
       return;
     }
-    if (id != null && id.length() > 0){
+    if (videoId != null && videoId.length() > 0){
 
       Context context = this.cordova.getActivity().getApplicationContext();
       Intent intent = new Intent(context, BrightcoveActivity.class);
-      intent.putExtra("video-id", id);
+      intent.putExtra("video-id", videoId);
       intent.putExtra("brightcove-token", this.token);
       intent.putExtra("vast-link", vast);
       intent.putExtra("ima-language", this.imaLang);
       intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
       context.startActivity(intent);
 
-      callbackContext.success("Playing now with Brightcove ID: " + id);
+      callbackContext.success("Playing now with Brightcove Video ID: " + videoId);
     } else{
       callbackContext.error("Empty video ID!");
+    }
+  }
+
+  private void playById(String referenceId, String vast, CallbackContext callbackContext) {
+    if (this.token == null){
+      callbackContext.error("Please init the brightcove with token!");
+      return;
+    }
+    if (referenceId != null && referenceId.length() > 0){
+
+      Context context = this.cordova.getActivity().getApplicationContext();
+      Intent intent = new Intent(context, BrightcoveActivity.class);
+      intent.putExtra("reference-id", referenceId);
+      intent.putExtra("brightcove-token", this.token);
+      intent.putExtra("vast-link", vast);
+      intent.putExtra("ima-language", this.imaLang);
+      intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+      context.startActivity(intent);
+
+      callbackContext.success("Playing now with Brightcove Reference ID: " + referenceId);
+    } else{
+      callbackContext.error("Empty reference ID!");
     }
   }
 
