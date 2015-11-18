@@ -96,9 +96,9 @@ public class BrightcoveActivity extends BrightcovePlayer {
     options.put("video_fields", StringUtil.join(values, ","));
 
     if (videoId != null) {
-      playById(token, videoId);
+      playByVideoId(token, videoId);
     } else if (referenceId != null){
-      playByReferenceId(token, referenceId);
+      playById(token, referenceId);
     } else if (videoUrl != null){
       playByUrl(videoUrl);
     }

@@ -10,9 +10,9 @@ Methods
 
 - cordova.plugins.BrightcovePlayerPlugin.init
 - cordova.plugins.BrightcovePlayerPlugin.setLanguage
-- cordova.plugins.BrightcovePlayerPlugin.playByUrl
+- cordova.plugins.BrightcovePlayerPlugin.playByVideoId
 - cordova.plugins.BrightcovePlayerPlugin.playById
-- cordova.plugins.BrightcovePlayerPlugin.playByReferenceId
+- cordova.plugins.BrightcovePlayerPlugin.playByUrl
 
 Properties
 --------
