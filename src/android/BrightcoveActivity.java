@@ -128,7 +128,7 @@ public class BrightcoveActivity extends BrightcovePlayer {
     return resources.getIdentifier(what, where, package_name);
   }
 
-  private void playById(String token, String videoId){
+  private void playByVideoId(String token, String videoId){
     Log.d(TAG, "Playing video from brightcove video ID: " + videoId);
 
     this.fullScreen();
@@ -150,7 +150,7 @@ public class BrightcoveActivity extends BrightcovePlayer {
     return;
   }
 
-  private void playByReferenceId(String token, String referenceId){
+  private void playById(String token, String referenceId){
     Log.d(TAG, "Playing video from brightcove reference ID: " + referenceId);
 
     this.fullScreen();

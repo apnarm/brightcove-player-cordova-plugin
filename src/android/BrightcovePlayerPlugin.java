@@ -42,15 +42,15 @@ public class BrightcovePlayerPlugin extends CordovaPlugin {
       String vast = args.getString(1);
       this.playByUrl(url, vast, callbackContext);
       return true;
-    } else if (action.equals("playByReferenceId")) {
-      String id = args.getString(0);
-      String vast = args.getString(1);
-      this.playByReferenceId(id, vast, callbackContext);
-      return true;
     } else if (action.equals("playById")) {
       String id = args.getString(0);
       String vast = args.getString(1);
       this.playById(id, vast, callbackContext);
+      return true;
+    } else if (action.equals("playByVideoId")) {
+      String id = args.getString(0);
+      String vast = args.getString(1);
+      this.playByVideoId(id, vast, callbackContext);
       return true;
     } else if(action.equals("init")) {
       String token = args.getString(0);
@@ -82,7 +82,7 @@ public class BrightcovePlayerPlugin extends CordovaPlugin {
     }
   }
 
-  private void playById(String videoId, String vast, CallbackContext callbackContext) {
+  private void playByVideoId(String videoId, String vast, CallbackContext callbackContext) {
     if (this.token == null){
       callbackContext.error("Please init the brightcove with token!");
       return;
@@ -104,7 +104,7 @@ public class BrightcovePlayerPlugin extends CordovaPlugin {
     }
   }
 
-  private void playByReferenceId(String referenceId, String vast, CallbackContext callbackContext) {
+  private void playById(String referenceId, String vast, CallbackContext callbackContext) {
     if (this.token == null){
       callbackContext.error("Please init the brightcove with token!");
       return;
