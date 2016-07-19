@@ -136,7 +136,7 @@ UIStoryboard *storyboard = nil;
     if (vastLink != nil && [vastLink length]){
       [self setVast:vastLink];
     }
-    [self.viewController showViewController:self.brightcoveView sender:self.viewController];
+    [self.viewController presentViewController:self.brightcoveView animated:YES completion:nil];
     pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:[NSString stringWithFormat:@"Playing now with URL: %@", url]];
   } else {
     pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"URL is not valid or empty!"];
@@ -160,7 +160,7 @@ UIStoryboard *storyboard = nil;
         if (vastLink != nil && [vastLink length]){
           [self setVast:vastLink];
         }
-        [self.viewController showViewController:self.brightcoveView sender:self.viewController];
+        [self.viewController presentViewController:self.brightcoveView animated:YES completion:nil];
         pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:[NSString stringWithFormat:@"Playing now with Brightcove video ID: %@", videoId]];
       } else {
         pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"Empty video ID!"];
@@ -185,7 +185,7 @@ UIStoryboard *storyboard = nil;
         if (vastLink != nil && [vastLink length]){
           [self setVast:vastLink];
         }
-        [self.viewController showViewController:self.brightcoveView sender:self.viewController];
+        [self.viewController presentViewController:self.brightcoveView animated:YES completion:nil];
         pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:[NSString stringWithFormat:@"Playing now with Brightcove reference ID: %@", referenceId]];
       } else {
         pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"Empty reference ID!"];
